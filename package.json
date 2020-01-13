@@ -73,7 +73,9 @@
     "prepublishOnly": "run-p build",
     "publish": "node build/gh-release.js",
     "version": "is-prerelease || npm run changelog && git add CHANGELOG.md",
-    "zip": "cd dist && cross-env bestzip \"./video-js-${npm_package_version}.zip\" * && cd .."
+    "zip": "cd dist && cross-env bestzip \"./video-js-${npm_package_version}.zip\" * && cd ..",
+    "rls": "standard-version",
+    "commit": "git-cz"
   },
   "repository": {
     "type": "git",
@@ -109,7 +111,7 @@
     "filesize": "^4.1.2",
     "gh-release": "^3.5.0",
     "humanize-duration": "^3.18.0",
-    "husky": "^1.2.0",
+    "husky": "^1.3.1",
     "jsdoc": "^3.6.2",
     "karma": "^4.1.0",
     "lint-staged": "^8.2.0",
@@ -127,13 +129,13 @@
     "remark-toc": "^5.1.1",
     "remark-validate-links": "^8.0.2",
     "replace": "^1.1.0",
-    "rollup": "^1.15.1",
+    "rollup": "^1.10.0",
     "rollup-plugin-alias": "^1.5.2",
     "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-commonjs": "^9.3.4",
     "rollup-plugin-ignore": "^1.0.5",
-    "rollup-plugin-json": "^3.1.0",
-    "rollup-plugin-node-resolve": "^4.2.4",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-node-resolve": "^4.2.3",
     "rollup-plugin-multi-entry": "^2.0.2",
     "rollup-plugin-progress": "^1.1.1",
     "rollup-plugin-stub": "^1.2.0",
@@ -149,7 +151,39 @@
     "videojs-generate-karma-config": "~5.2.1",
     "videojs-languages": "^2.0.0",
     "videojs-standard": "^8.0.3",
-    "webpack": "^1.15.0"
+    "webpack": "^1.15.0",
+    "@commitlint/cli": "^7.4.0",
+    "@commitlint/config-conventional": "^7.3.1",
+    "@kilisio/panzoom": "^1.0.0",
+    "@kilisio/tabulator": "^1.0.0",
+    "@kilisio/vue": "^1.0.0",
+    "@kilisio/vue_router": "^1.0.0",
+    "absurd": "^0.3.9",
+    "budo": "^11.6.3",
+    "cheerio": "^1.0.0-rc.3",
+    "clean-css": "^4.2.1",
+    "commitizen": "^3.0.5",
+    "cz-conventional-changelog": "^2.1.0",
+    "esm": "^3.1.4",
+    "express": "^4.17.1",
+    "helmet": "^3.18.0",
+    "html-minifier": "^4.0.0",
+    "javascript-obfuscator": "^0.18.4",
+    "jshint": "^2.9.7",
+    "open": "^6.4.0",
+    "pouchdb": "^7.1.1",
+    "pouchdb-find": "^7.1.1",
+    "prettier": "^1.16.1",
+    "rollup-plugin-analyzer": "^3.2.2",
+    "rollup-plugin-cleanup": "^3.1.1",
+    "rollup-plugin-clear": "^2.0.7",
+    "rollup-plugin-copy": "^3.1.0",
+    "rollup-plugin-generate-package-json": "^3.1.3",
+    "rollup-plugin-obfuscator": "^0.1.0",
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-terser": "^5.1.2",
+    "rollup-plugin-visualizer": "^2.7.2",
+    "standard-version": "^4.4.0"
   },
   "vjsstandard": {
     "ignore": [
@@ -167,11 +201,7 @@
       "webpack"
     ]
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
+  "husky": {},
   "lint-staged": {
     "*.js": [
       "vjsstandard --fix",
@@ -185,5 +215,12 @@
       "node build/translations.js",
       "git add docs/translations-needed.md"
     ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog",
+      "maxHeaderWidth": 200,
+      "maxLineWidth": 200
+    }
   }
 }
